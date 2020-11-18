@@ -6,10 +6,18 @@ import RPi.GPIO as GPIO
 # 以下:ここに実装デバイス接続を行う(Global 変数)
 
 
+SENSOR1-OUTPUT = 10
+SENSOR1-INPUT =11 
+
+
+SENSOR2-OUTPUT = 12
+SENSOR2-INPUT =13
+
+
+
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(15,GPIO.OUT)
 GPIO.setup(2,GPIO.IN)
-
 
 
 app = FastAPI()
