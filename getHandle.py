@@ -4,7 +4,7 @@ import bluepy
 def main():
     try:
         peri = bluepy.btle.Peripheral()
-        peri.connect(devadr, bluepy.btle.ADDR_TYPE_RANDOM)  # addrTypeがpublic なら、ADDR_TYPE_PUBLICを指定
+        peri.connect(devadr, bluepy.btle.ADDR_TYPE_PUBLIC)  # addrTypeがpublic なら、ADDR_TYPE_PUBLICを指定
     except:
         print("device connect error")
         sys.exit()

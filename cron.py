@@ -12,13 +12,7 @@ class MyDelegate(bluepy.btle.DefaultDelegate):
 
     def handleNotification(self, cHandle, data):
         global exflag
-        if cHandle == HANDLE_A_BUTTON:
-            b = "button A"
-            if data[0] == 0x02:   # ボタン長押し
-                exflag = True
         print(data)
-        c_data = binascii.b2a_hex(data)
-        print( "%s: %s" % (b, c_data) )
 
 def main():
     peri = bluepy.btle.Peripheral()
