@@ -1,16 +1,15 @@
 import bluepy
-import binascii
+import requests
 
-HANDLE_A_BUTTON = 0x002a
 devadr = "30:ae:a4:ee:8d:66"   # 実際にはmicro:bit のアドレスを記述
+BASE_URL = "i"
 
-exflag = False
+
 
 pressure=""
 temperature=""
 illuminance=""
 solidMoisture=""
-
 
 class MyDelegate(bluepy.btle.DefaultDelegate):
     def __init__(self, params):
@@ -38,12 +37,14 @@ def main():
         if peri.waitForNotifications(1.0):
             continue
     print("全データを取得")
-    print(pressure)
-    print(temperature)
-    print(illuminance)
-    print(solidMoisture)
+    print("気圧:",pressure)
+    print("気温:",temperature)
+    print("照度:",illuminance)
+    print("土壌:",solidMoisture)
 
     peri.disconnect()
+    getData = requests.get("https://example.com")
+    print(getData)
 
 if __name__ == "__main__":
     main()
