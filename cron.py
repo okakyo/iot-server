@@ -2,7 +2,7 @@ import bluepy
 import binascii
 
 HANDLE_A_BUTTON = 0x002a
-devadr = ""   # 実際にはmicro:bit のアドレスを記述
+devadr = "30:ae:a4:ee:8d:66"   # 実際にはmicro:bit のアドレスを記述
 
 exflag = False
 
@@ -16,12 +16,13 @@ class MyDelegate(bluepy.btle.DefaultDelegate):
             b = "button A"
             if data[0] == 0x02:   # ボタン長押し
                 exflag = True
+        print(data)
         c_data = binascii.b2a_hex(data)
         print( "%s: %s" % (b, c_data) )
 
 def main():
     peri = bluepy.btle.Peripheral()
-    peri.connect(devadr, bluepy.btle.ADDR_TYPE_RANDOM)
+    peri.connect(devadr, bluepy.btle.ADDR_TYPE_PUBLIC)
     peri.withDelegate(MyDelegate(bluepy.btle.DefaultDelegate))
 
     # ボタン notify を要求
