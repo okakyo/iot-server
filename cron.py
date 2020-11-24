@@ -19,7 +19,7 @@ class MyDelegate(bluepy.btle.DefaultDelegate):
         global pressure, temperature,illuminance, solidMoisture
         data = str(data).replace("'","").split(":")
         print(data);
-        if(data[0] =="press"):
+        if(data[0][1::] =="pressure"):
           pressure =data[1]
         elif(data[0]=="temp"):
           temperature =data[1]
