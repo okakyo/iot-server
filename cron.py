@@ -23,9 +23,9 @@ class MyDelegate(bluepy.btle.DefaultDelegate):
         elif(data[0]=="temp"):
           temperature =data[1]
         elif(data[0] =="illuminance"):
-          illuminance =data.split(":")[1]
+          illuminance =data[1]
         elif(data[0]=="solid"):
-          solidMoisture =data.split(":")[1]
+          solidMoisture =data[1]
 
 def main():
     peri = bluepy.btle.Peripheral()
