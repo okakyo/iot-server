@@ -17,14 +17,15 @@ class MyDelegate(bluepy.btle.DefaultDelegate):
 
     def handleNotification(self, cHandle, data):
         global pressure, temperature,illuminance, solidMoisture
-        data = str(data).replace("'","")
-        if(cHandle ==42):
-          pressure =data.split(":")[1]
-        elif(cHandle ==45):
-          temperature =data.split(":")[1]
-        elif(cHandle ==47):
+        data = str(data).replace("'","").split(":")
+        print(data);
+        if(data[0] =="press"):
+          pressure =data[1]
+        elif(data[0]=="temp"):
+          temperature =data[1]
+        elif(cHandle =="illuminance"):
           illuminance =data.split(":")[1]
-        elif(cHandle ==49):
+        elif(cHandle =="solid"):
           solidMoisture =data.split(":")[1]
 
 def main():
