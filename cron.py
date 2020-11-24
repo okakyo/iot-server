@@ -17,9 +17,9 @@ class MyDelegate(bluepy.btle.DefaultDelegate):
 
     def handleNotification(self, cHandle, data):
         global pressure, temperature,illuminance, solidMoisture
-        data = str(data).replace("'","").split(":")
-        print(data);
-        if(data[0][1::] =="pressure"):
+        data = data.decode(encoding='utf-8').replace("'","").split(":")
+        print(data)
+        if(data[0] =="pressure"):
           pressure =data[1]
         elif(data[0]=="temp"):
           temperature =data[1]
