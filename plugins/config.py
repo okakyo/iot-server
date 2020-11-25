@@ -18,8 +18,8 @@ FIREBASE_PRIVATE_ID=os.environ.get("private_key_id")
 FIREBASE_PRIVATE_KEY=os.environ.get("private_key")
 FIREBASE_CLIENT_EMAIL=os.environ.get("client_email")
 FIREBASE_CLIENT_ID=os.environ.get('client_id')
-FIREBASE_AUTH_URL=os.environ.get("auth_uri")
-FIREBASE_TOKEN_URL=os.environ.get('token_uri')
+FIREBASE_AUTH_URI=os.environ.get("auth_uri")
+FIREBASE_TOKEN_URI=os.environ.get('token_uri')
 FIREBASE_AUTH_PROVIDER_X509_CERT_URL=os.environ.get("auth_provider_x509_cert_url")
 FIREBASE_CLIENT_X509_CERT_URL=os.environ.get("client_x509_cert_url")
 
@@ -30,8 +30,8 @@ FirebasePlugin = credentials.Certificate({
     "private_key":FIREBASE_PRIVATE_KEY,
     "client_email":FIREBASE_CLIENT_EMAIL,
     "client_id":FIREBASE_CLIENT_ID,
-    "auth_url":FIREBASE_AUTH_URL,
-    "token_url":FIREBASE_TOKEN_URL,
+    "auth_uri":FIREBASE_AUTH_URI,
+    "token_uri":FIREBASE_TOKEN_URI,
     "auth_provider_x509_cert_url":FIREBASE_AUTH_PROVIDER_X509_CERT_URL,
     "client_x509_cert_url":FIREBASE_CLIENT_X509_CERT_URL
 })
