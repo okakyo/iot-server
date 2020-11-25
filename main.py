@@ -2,11 +2,21 @@ from fastapi import FastAPI,Header
 import uvicorn
 import asyncio
 import datetime
-
+import discord
 
 app = FastAPI()
+client = discord.Client()
+
+@app.on_event("startup")
+async def startup_event():
+  asyncio.create_task(client.start("NzgwNTExMTg1Njc3ODQ0NTcw.X7wJrw.SttcbuyLPT6SXkx4Rq6p2JjFd_8"))
+
 
 @app.get("/")
+async def read_root():
+  return {"Hello": str(client.user)}
+ 
+@app.get("/hello")
 async def hello():
   return  "Hello World"
 

@@ -1,16 +1,20 @@
 import bluepy
 import requests
+import os,sys
 
 devadr = "30:ae:a4:ee:8d:66"   # 実際にはmicro:bit のアドレスを記述
-BASE_URL = "i"
-
-
+BASE_URL = "https://example.com"
 
 pressure=""
 temperature=""
 illuminance=""
 solidMoisture=""
 
+
+# BLE の通信方法: Notify 
+# データ受信方法:  devKey:value
+# devKey: pressure, temp, illuminance, solid , humid
+# value に値を送信する
 class MyDelegate(bluepy.btle.DefaultDelegate):
     def __init__(self, params):
         bluepy.btle.DefaultDelegate.__init__(self)
@@ -43,7 +47,7 @@ def main():
     print("土壌:",solidMoisture)
 
     peri.disconnect()
-    getData = requests.get("https://example.com")
+    getData = requests.post(BASE_URL)
     print(getData)
 
 if __name__ == "__main__":

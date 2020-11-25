@@ -1,8 +1,27 @@
+import discord 
 from fastapi import APIRouter
-from bluetooth.ble import *
+import asyncio
+import logging
+from services.bot import discord
 
-router= APIRouter()
+router = APIRouter()
 
-@router.get("/")
-async def chat():
+"""
+- センサーより取得したデータを送信する
+"""
+@router.get("/sensor")
+async def sendData():
+    try:
+        print("Done")
+    except Exception as e:
+        logging.error(e)
+
+    return ""
+
+"""
+- Discord より入力されたコマンドをもとにラズパイを操作する
+
+"""
+@router.post("/message/push")
+async def pushMessage():
     return ""
