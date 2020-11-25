@@ -2,7 +2,8 @@ import bluepy
 import requests
 import os,sys
 import firebase_admin
-from plugins import DISCORD_TOKEN,FirebasePlugin
+from firebase_admin import db
+from plugins import FirebasePlugin
 devadr = "30:ae:a4:ee:8d:66"   # 実際にはmicro:bit のアドレスを記述
 BASE_URL = "https://example.com"
 
@@ -11,6 +12,8 @@ temperature=""
 illuminance=""
 solidMoisture=""
 
+firebase_admin.initialize_app(FirebasePlugin)
+deviceDb = db.reference("/device_data")
 
 # BLE の通信方法: Notify 
 # データ受信方法:  devKey:value
@@ -48,8 +51,11 @@ def main():
     print("土壌:",solidMoisture)
 
     peri.disconnect()
-    getData = requests.post(BASE_URL)
-    print(getData)
+    
+    
+    # TODO:　ラズパイから Firebase に直接データを送信するようにして
+    # getData = requests.post(BASE_URL)
+    # print(getData)
 
 if __name__ == "__main__":
     main()
