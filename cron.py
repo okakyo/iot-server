@@ -1,7 +1,8 @@
 import bluepy
 import requests
 import os,sys
-
+import firebase_admin
+from plugins import DISCORD_TOKEN,FirebasePlugin
 devadr = "30:ae:a4:ee:8d:66"   # 実際にはmicro:bit のアドレスを記述
 BASE_URL = "https://example.com"
 

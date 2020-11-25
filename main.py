@@ -3,13 +3,14 @@ import uvicorn
 import asyncio
 import datetime
 import discord
+from plugins import DISCORD_TOKEN
 
 app = FastAPI()
 client = discord.Client()
 
 @app.on_event("startup")
 async def startup_event():
-  asyncio.create_task(client.start(""))
+  asyncio.create_task(client.start(DISCORD_TOKEN))
 
 
 @app.get("/")

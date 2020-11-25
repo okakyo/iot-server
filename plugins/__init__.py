@@ -1,1 +1,1 @@
-from .config import DISCORD_TOKEN
+from .config import DISCORD_TOKEN,FirebasePlugin
