@@ -9,7 +9,7 @@ client = discord.Client()
 
 @app.on_event("startup")
 async def startup_event():
-  asyncio.create_task(client.start("NzgwNTExMTg1Njc3ODQ0NTcw.X7wJrw.SttcbuyLPT6SXkx4Rq6p2JjFd_8"))
+  asyncio.create_task(client.start(""))
 
 
 @app.get("/")
