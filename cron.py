@@ -37,6 +37,7 @@ class MyDelegate(bluepy.btle.DefaultDelegate):
 
 def main():
     peri = bluepy.btle.Peripheral()
+    charas = peri.getCharacteristics()
     peri.connect(devadr, bluepy.btle.ADDR_TYPE_PUBLIC)
     peri.withDelegate(MyDelegate(bluepy.btle.DefaultDelegate))
 
@@ -49,7 +50,7 @@ def main():
     print("気温:",temperature)
     print("照度:",illuminance)
     print("土壌:",solidMoisture)
-
+    print(charas)
     peri.disconnect()
     
     
