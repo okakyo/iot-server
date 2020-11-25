@@ -12,7 +12,9 @@ temperature=""
 illuminance=""
 solidMoisture=""
 
-firebase_admin.initialize_app(FirebasePlugin)
+firebase_admin.initialize_app(FirebasePlugin,{
+  "databaseURL": "https://speak-vegetable.firebaseio.com"
+})
 deviceDb = db.reference("/device_data")
 
 # BLE の通信方法: Notify 

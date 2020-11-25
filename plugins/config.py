@@ -3,7 +3,7 @@
 import os 
 from os.path import join,dirname
 from dotenv import load_dotenv
-
+from firebase_admin import credentials
 
 load_dotenv(verbose=True)
 
@@ -23,7 +23,7 @@ FIREBASE_TOKEN_URL=os.environ.get('token_uri')
 FIREBASE_AUTH_PROVIDER_X509_CERT_URL=os.environ.get("auth_provider_x509_cert_url")
 FIREBASE_CLIENT_X509_CERT_URL=os.environ.get("client_x509_cert_url")
 
-FirebasePlugin = {
+FirebasePlugin = credentials.Certificate({
     "type":FIREBASE_TYPE,
     "project_id":FIREBASE_PROJECT_ID,
     "private_key_id":FIREBASE_PRIVATE_ID,
@@ -34,4 +34,4 @@ FirebasePlugin = {
     "token_url":FIREBASE_TOKEN_URL,
     "auth_provider_x509_cert_url":FIREBASE_AUTH_PROVIDER_X509_CERT_URL,
     "client_x509_cert_url":FIREBASE_CLIENT_X509_CERT_URL
-}
+})
