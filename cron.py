@@ -7,12 +7,9 @@ from plugins import FirebasePlugin
 import datetime
 import logging
 
-SERVICE_UUID ="4fafc201-1fb5-459e-8fcc-c5c9c331914b"
-devadr = "30:ae:a4:ee:8d:66"   
-PHONE_UDID = "F4HC715GN73G"
-
-
-BASE_URL = "https://example.com"
+SERVICE_UUID="4fafc201-1fb5-459e-8fcc-c5c9c331914b"
+DEVICE_ADDRESS ="30:ae:a4:ee:8d:66"
+PHONE_UDID ="F4HC715GN73G"
 
 pressure=""
 temperature=""
@@ -51,7 +48,7 @@ class MyDelegate(bluepy.btle.DefaultDelegate):
 def main(): 
     try:
       peri = bluepy.btle.Peripheral()
-      peri.connect(devadr, bluepy.btle.ADDR_TYPE_PUBLIC)
+      peri.connect(DEVICE_ADDRESS, bluepy.btle.ADDR_TYPE_PUBLIC)
       peri.withDelegate(MyDelegate(bluepy.btle.DefaultDelegate))
       
       nowDatetime = datetime.datetime.now()
