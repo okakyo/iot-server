@@ -5,9 +5,13 @@ import firebase_admin
 from firebase_admin import db
 from plugins import FirebasePlugin
 import datetime
+import logging
 
 SERVICE_UUID ="4fafc201-1fb5-459e-8fcc-c5c9c331914b"
-devadr = "30:ae:a4:ee:8d:66"   # 実際にはmicro:bit のアドレスを記述
+devadr = "30:ae:a4:ee:8d:66"   
+PHONE_UDID = "F4HC715GN73G"
+
+
 BASE_URL = "https://example.com"
 
 pressure=""
@@ -52,7 +56,7 @@ def main():
           if peri.waitForNotifications(1.0):
               continue
       
-    except Error as e:
+    except Exception as e:
       logging.error(e)
       peri.disconnect()
     
@@ -63,7 +67,7 @@ def main():
     print("気温:",temperature)
     print("照度:",illuminance)
     print("土壌:",solidMoisture)
-    device_db.child(SERVICE_UUID).set({
+    device_db.child(SERVICE_UUID).child(PHONE_UDID).set({
       "createdAt":createdAt,
       "cultivationId":"xxxxxxxxxx",
       "humidity":{
