@@ -84,7 +84,7 @@ def main():
       "temperature":{
         "value":temperature,
       }
-      })
+    })
     # TODO:　ラズパイから Firebase に直接データを送信するようにして
     # getData = requests.post(BASE_URL)
     # print(getData)
