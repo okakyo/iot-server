@@ -44,7 +44,11 @@ class MyDelegate(bluepy.btle.DefaultDelegate):
         elif(data[0]=="solid"):
           solidMoisture =data[1]
 
-def main():
+
+# TODO: メインの API サーバーから,ユーザーID, デバイスID 情報をもとにユーザー情報を取得するようにする
+
+
+def main(): 
     try:
       peri = bluepy.btle.Peripheral()
       peri.connect(devadr, bluepy.btle.ADDR_TYPE_PUBLIC)
@@ -62,25 +66,20 @@ def main():
     
     peri.disconnect()
     print(nowDatetime)
-    print("全データを取得")
-    print("気圧:",pressure)
-    print("気温:",temperature)
-    print("照度:",illuminance)
-    print("土壌:",solidMoisture)
+    print("データの取得完了")
+
+    # TODO: humidity について、デバイスに接続して値を取得する必要がある
     device_db.child(SERVICE_UUID).child(PHONE_UDID).set({
       "createdAt":createdAt,
-      "cultivationId":"xxxxxxxxxx",
+      "cultivationId":"xxxxxx",
       "humidity":{
         "value":"80",
-       "status":"ok"
       },
       "pressure":{
        "value": pressure,
-       "status":"ok"
        },
       "illuminance":{
         "value":illuminance,   
-       "status":"ng"
       },
       "pressure":{
         "value":pressure,
@@ -88,11 +87,9 @@ def main():
       },
       "solid_moisture":{
         "value":solidMoisture,  
-       "status":"ok"
       },
       "temperature":{
         "value":temperature,
-       "status":"ok"
       }
       })
     # TODO:　ラズパイから Firebase に直接データを送信するようにして
