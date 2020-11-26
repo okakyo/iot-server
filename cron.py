@@ -78,10 +78,6 @@ def main():
       "illuminance":{
         "value":illuminance,   
       },
-      "pressure":{
-        "value":pressure,
-       "status":"ok"
-      },
       "solid_moisture":{
         "value":solidMoisture,  
       },
