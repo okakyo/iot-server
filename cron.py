@@ -45,6 +45,8 @@ class MyDelegate(bluepy.btle.DefaultDelegate):
         elif(data[0]=="humidity"):
           if (data[1]!="nan"):
             humidity=data[1]
+            humidity =int(humidity)*100/255
+            print(type(humidity))
 
 # TODO: メインの API サーバーから,ユーザーID, デバイスID 情報をもとにユーザー情報を取得するようにする
 
@@ -70,9 +72,9 @@ def main():
     peri.disconnect()
     print(nowDatetime)
     print("データの取得完了")
-    print(type(humidity))
+    
     # TODO: humidity について、デバイスに接続して値を取得する必要がある
-    humidity =int(humidity)*100/255
+    
     device_db.child(SERVICE_UUID).set({
       "createdAt":createdAt,
       "humidity":{
