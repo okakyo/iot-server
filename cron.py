@@ -43,6 +43,7 @@ class MyDelegate(bluepy.btle.DefaultDelegate):
         elif(data[0]=="solid"):
           solidMoisture =data[1]
         elif(data[0]=="humidity"):
+          print(data[1]=="nan")
           if (humidity!="nan"):
             humidity=data[1]
 
