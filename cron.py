@@ -75,7 +75,7 @@ def main():
     device_db.child(SERVICE_UUID).set({
       "createdAt":createdAt,
       "humidity":{
-        "value": humidity,
+        "value": int(humidity*100/255),
       },
       "pressure":{
        "value": pressure,
