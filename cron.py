@@ -72,7 +72,7 @@ def main():
     print("データの取得完了")
 
     # TODO: humidity について、デバイスに接続して値を取得する必要がある
-    device_db.child(SERVICE_UUID).child(CULTIVATION_ID).set({
+    device_db.child(SERVICE_UUID).set({
       "createdAt":createdAt,
       "humidity":{
         "value": humidity,
