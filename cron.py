@@ -43,7 +43,6 @@ class MyDelegate(bluepy.btle.DefaultDelegate):
         elif(data[0]=="solid"):
           solidMoisture =data[1]
         elif(data[0]=="humidity"):
-          print(data[1]=="nan")
           if (data[1]!="nan"):
             humidity=data[1]
 
@@ -71,8 +70,9 @@ def main():
     peri.disconnect()
     print(nowDatetime)
     print("データの取得完了")
-    print(humidity)
+    print(type(humidity))
     # TODO: humidity について、デバイスに接続して値を取得する必要がある
+    humidity =int(humidity)*100/255
     device_db.child(SERVICE_UUID).set({
       "createdAt":createdAt,
       "humidity":{
