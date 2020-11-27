@@ -51,6 +51,7 @@ class MyDelegate(bluepy.btle.DefaultDelegate):
 
 
 def main():
+    print()
     print("=====================================")
     print()
     print("Start BLE Connection to the IoT Devices!")
