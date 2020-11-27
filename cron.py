@@ -16,6 +16,7 @@ pressure=""
 temperature=""
 illuminance=""
 solidMoisture=""
+humidity=""
 
 firebase_admin.initialize_app(FirebasePlugin,{
   "databaseURL": "https://speak-vegetable.firebaseio.com"
@@ -31,7 +32,7 @@ class MyDelegate(bluepy.btle.DefaultDelegate):
         bluepy.btle.DefaultDelegate.__init__(self)
 
     def handleNotification(self, cHandle, data):
-        global pressure, temperature,illuminance, solidMoisture
+        global pressure, temperature,illuminance, solidMoisture,humidity
         data = data.decode(encoding='utf-8').split(":")
         if(data[0] =="pressure"):
           pressure =data[1]
@@ -41,12 +42,15 @@ class MyDelegate(bluepy.btle.DefaultDelegate):
           illuminance =data[1]
         elif(data[0]=="solid"):
           solidMoisture =data[1]
-
+        elif(data[0]=="humidity"):
+          if (humidity!="nan"):
+            humidity=data[1]
 
 # TODO: メインの API サーバーから,ユーザーID, デバイスID 情報をもとにユーザー情報を取得するようにする
 
 
 def main(): 
+    print("センサー値取得開始")
     try:
       peri = bluepy.btle.Peripheral()
       peri.connect(DEVICE_ADDRESS, bluepy.btle.ADDR_TYPE_PUBLIC)
@@ -54,10 +58,11 @@ def main():
       
       nowDatetime = datetime.datetime.now()
       createdAt = nowDatetime.strftime('%Y/%m/%d-%H:%M:%S')
+      print("データ取得中")
       while(pressure=="" or temperature=="" or illuminance =="" or solidMoisture==""):
           if peri.waitForNotifications(1.0):
               continue
-      
+    
     except Exception as e:
       logging.error(e)
       peri.disconnect()
@@ -70,7 +75,7 @@ def main():
     device_db.child(SERVICE_UUID).child(CULTIVATION_ID).set({
       "createdAt":createdAt,
       "humidity":{
-        "value":"80",
+        "value": humidity,
       },
       "pressure":{
        "value": pressure,
@@ -86,7 +91,5 @@ def main():
       }
     })
     # TODO:　ラズパイから Firebase に直接データを送信するようにして
-    getData = requests.get("https://e3c902a3-9f7d-4f1c-9b9a-daa5e4633165.mock.pstmn.io/cultivations/1")
-    print(getData.content)
 if __name__ == "__main__":
     main()
