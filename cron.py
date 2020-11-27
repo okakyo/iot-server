@@ -79,7 +79,7 @@ def main():
     print("Collected all sensor data:")
     print()
     print("=====================================")
-    
+    print()
     print("Temperature:{}℃".format(temperature))
     print("Humidity:{}%".format(humidity))
     print("Pressure:{}Pa".format(pressure))
