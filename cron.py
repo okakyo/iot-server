@@ -10,6 +10,7 @@ import logging
 SERVICE_UUID="4fafc201-1fb5-459e-8fcc-c5c9c331914b"
 DEVICE_ADDRESS ="30:ae:a4:ee:8d:66"
 
+CULTIVATION_ID = "xxxxxx"
 
 pressure=""
 temperature=""
@@ -66,9 +67,8 @@ def main():
     print("データの取得完了")
 
     # TODO: humidity について、デバイスに接続して値を取得する必要がある
-    device_db.child(SERVICE_UUID).child(PHONE_UDID).set({
+    device_db.child(SERVICE_UUID).child(CULTIVATION_ID).set({
       "createdAt":createdAt,
-      "cultivationId":"xxxxxx",
       "humidity":{
         "value":"80",
       },
