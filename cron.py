@@ -44,7 +44,7 @@ class MyDelegate(bluepy.btle.DefaultDelegate):
           solidMoisture =data[1]
         elif(data[0]=="humidity"):
           print(data[1]=="nan")
-          if (humidity!="nan"):
+          if (data[1]!="nan"):
             humidity=data[1]
 
 # TODO: メインの API サーバーから,ユーザーID, デバイスID 情報をもとにユーザー情報を取得するようにする
