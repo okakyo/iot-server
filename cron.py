@@ -10,7 +10,7 @@ import logging
 SERVICE_UUID="4fafc201-1fb5-459e-8fcc-c5c9c331914b"
 DEVICE_ADDRESS ="30:ae:a4:ee:8d:66"
 
-CULTIVATION_ID = "xxxxxx"
+PLANT_ID = "xxxxxx"
 
 pressure=""
 temperature=""
@@ -79,6 +79,7 @@ def main():
       "humidity":{
         "value": humidity,
       },
+      "plantId":PLANT_ID,
       "pressure":{
        "value": pressure,
        },
