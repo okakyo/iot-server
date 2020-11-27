@@ -70,12 +70,12 @@ def main():
     peri.disconnect()
     print(nowDatetime)
     print("データの取得完了")
-
+    pritn(humidity)
     # TODO: humidity について、デバイスに接続して値を取得する必要がある
     device_db.child(SERVICE_UUID).set({
       "createdAt":createdAt,
       "humidity":{
-        "value": int(humidity*100/255),
+        "value": int(int(humidity)*100/255),
       },
       "pressure":{
        "value": pressure,
