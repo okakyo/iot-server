@@ -59,7 +59,7 @@ def main():
       nowDatetime = datetime.datetime.now()
       createdAt = nowDatetime.strftime('%Y/%m/%d-%H:%M:%S')
       print("データ取得中")
-      while(pressure=="" or temperature=="" or illuminance =="" or solidMoisture==""):
+      while(pressure=="" or temperature=="" or illuminance =="" or solidMoisture=="" or humidity==""):
           if peri.waitForNotifications(1.0):
               continue
     
