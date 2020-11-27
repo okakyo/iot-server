@@ -50,8 +50,12 @@ class MyDelegate(bluepy.btle.DefaultDelegate):
 # TODO: メインの API サーバーから,ユーザーID, デバイスID 情報をもとにユーザー情報を取得するようにする
 
 
-def main(): 
-    print("センサー値取得開始")
+def main():
+    print("=====================================")
+    print("Start BLE Connection to the IoT Devices!")
+    print(datetime.datetime.now())
+    print()
+    print("=====================================")
     try:
       peri = bluepy.btle.Peripheral()
       peri.connect(DEVICE_ADDRESS, bluepy.btle.ADDR_TYPE_PUBLIC)
@@ -59,21 +63,19 @@ def main():
       
       nowDatetime = datetime.datetime.now()
       createdAt = nowDatetime.strftime('%Y/%m/%d-%H:%M:%S')
-      print("データ取得中")
+      print("Collecting")
       while(pressure=="" or temperature=="" or illuminance =="" or solidMoisture=="" or humidity==""):
           if peri.waitForNotifications(1.0):
+              print(".",end="")
               continue
-    
     except Exception as e:
       logging.error(e)
       peri.disconnect()
-    
     peri.disconnect()
     print(nowDatetime)
-    print("データの取得完了")
-    
+    print("Success the collection of device data !!!")
+    print("Sending data to the Firebase !")
     # TODO: humidity について、デバイスに接続して値を取得する必要がある
-    
     device_db.child(SERVICE_UUID).set({
       "createdAt":createdAt,
       "humidity":{
@@ -93,6 +95,8 @@ def main():
         "value":temperature,
       }
     })
+    print("Success !")
+
     # TODO:　ラズパイから Firebase に直接データを送信するようにして
 if __name__ == "__main__":
     main()
