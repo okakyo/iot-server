@@ -9,7 +9,7 @@ import logging
 
 SERVICE_UUID="4fafc201-1fb5-459e-8fcc-c5c9c331914b"
 DEVICE_ADDRESS ="30:ae:a4:ee:8d:66"
-PHONE_UDID ="F4HC715GN73G"
+
 
 pressure=""
 temperature=""
@@ -76,10 +76,10 @@ def main():
        "value": pressure,
        },
       "illuminance":{
-        "value":illuminance,   
+        "value":illuminance,
       },
       "solid_moisture":{
-        "value":solidMoisture,  
+        "value":solidMoisture,
       },
       "temperature":{
         "value":temperature,
