@@ -86,8 +86,7 @@ def main():
       }
     })
     # TODO:　ラズパイから Firebase に直接データを送信するようにして
-    # getData = requests.post(BASE_URL)
-    # print(getData)
-
+    getData = requests.get("https://e3c902a3-9f7d-4f1c-9b9a-daa5e4633165.mock.pstmn.io/cultivations/1")
+    print(getData)
 if __name__ == "__main__":
     main()
