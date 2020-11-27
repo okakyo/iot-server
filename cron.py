@@ -46,8 +46,6 @@ class MyDelegate(bluepy.btle.DefaultDelegate):
           if (data[1]!="nan"):
             humidity=data[1]
             humidity =int(float(humidity)*100/255)
-            print(humidity)
-            
 
 # TODO: メインの API サーバーから,ユーザーID, デバイスID 情報をもとにユーザー情報を取得するようにする
 
@@ -79,7 +77,7 @@ def main():
     device_db.child(SERVICE_UUID).set({
       "createdAt":createdAt,
       "humidity":{
-        "value": int(int(humidity)*100/255),
+        "value": humidity,
       },
       "pressure":{
        "value": pressure,
