@@ -36,17 +36,23 @@ class MyDelegate(bluepy.btle.DefaultDelegate):
         data = data.decode(encoding='utf-8').split(":")
         if(data[0] =="pressure"):
           pressure =data[1]
+          print(pressure)
         elif(data[0]=="temp"):
           temperature =data[1]
+          print(temperature)
         elif(data[0] =="illuminance"):
           illuminance =data[1]
+          print(illuminance)
         elif(data[0]=="solid"):
           solidMoisture =data[1]
+          print(solidMoisture)
         elif(data[0]=="humidity"):
           if (data[1]!="nan"):
             humidity=data[1]
             humidity =int(float(humidity)*100/255)
-
+            print(humidity)
+          else :
+            print("取得できませんでした")
 # TODO: メインの API サーバーから,ユーザーID, デバイスID 情報をもとにユーザー情報を取得するようにする
 
 
